@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Sign Up</title>
+        <link rel="stylesheet" type="text/css" href="signupstyle.css">
+        <script>
+            function checkConditions(){
+                var name=document.getElementById("name")
+                var age=document.getElementById("age")
+                var phno=document.getElementById("phno")
+                var pw=document.getElementById("pw")
+                var cpw=document.getElementById("cpw")
+                var gender=document.getElementsByName("gender")
+                var dob=document.getElementById("dob")
+
+                if(validateEmptyFields(name)){
+                    if(validateEmptyFields(age)){
+                        if(validateEmptyFields(phno)){
+                            if(validateEmptyFields(pw)){
+                                if(validateEmptyFields(cpw)){
+                                    if(validateCheck(gender)){
+                                        if(validateEmptyFields(dob)){
+                                            if(validateAge(age)){
+                                                if(validatePsw(pw,cpw)){
+                                                    if(validatePhno(phno)){
+                                                        alert("success")
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+
+            }
+
+            function validateEmptyFields(fname){
+                if(fname.value.length==0){
+                    alert("Please fill all the fields");
+                    fname.focus();
+                    return false;
+                }
+                return true;
+
+            }
+
+            function validateCheck(gender){
+                var isChecked=false;
+                for(var i=0;i<gender.length;i++){
+                    if(gender[i].checked){
+                        isChecked=true;
+                        break;
+                    }
+                }
+                if(isChecked==false){
+                    alert("select one of the options")
+                }
+                return isChecked
+            }
+
+            function validatePhno(phno){
+                var pattern=/^\d{10}$/;
+                if(phno.value.match(pattern)){
+                    return true;
+                }
+                else{
+                    alert("phno should have 10 digits")
+                    phno.focus();
+                    return false;
+                }
+            }
+
+            function validateAge(age){
+                var agev=age.value;
+                if(agev>=12 && agev<=50){
+                    return true
+                }
+                else{
+                    alert('age is not accepted')
+                    age.focus();
+                    return false;
+                   
+                }
+           
+            }
+
+
+            function validatePsw(pw,cpw){
+               
+                if(pw.value===cpw.value){
+                    return true;
+                }
+                else{
+                    alert("passwords donot match")
+                    pw.focus();
+                    return false;
+                }
+                
+            }
+
+            // var form=document.getElementById("myForm");
+            // function handle(e){
+            //     e.preventDefault();
+            // }
+            // form.addEventListener('submit',handle)
+
+        </script>
+    </head>
+    <body>
+        <div class="form">
+        <form onsubmit="return checkConditions()" id="myForm">
+            <div class="section"><span>1</span>First Name & Age</div>
+            <div class="inner-wrap">
+                <label>Your Full Name <input type="text"  id="name" name="name" /></label>
+                <label>Age <input type="number" id="age" name="age"/></label>
+            </div>
+        
+            <div class="section"><span>2</span> Phone & Dob & Gender</div>
+            <div class="inner-wrap">
+                <label>Phone Number <input type="text" id="phno" name="phno" /></label>
+                <label>Date of birth <input type="date" id="dob" name="dob"/></label>
+                <label>Gender</label>
+                <input type="radio" id="male" name="gender" value="male"> Male <br>
+                <input type="radio" id="female" name="gender" value="female"> Female <br/> 
+                <input type="radio" id="other" name="gender" value="other"> Other
+            </div>
+        
+            <div class="section"><span>3</span>Passwords</div>
+                <div class="inner-wrap">
+                <label>Password <input type="password" id="pw" name="password"   pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"></label>
+                <label>Confirm Password <input type="password" id="cpw" name="cfpassword"  pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"/></label>
+            </div>
+            <div class="button-section">
+             <input type="submit" name="Sign Up" />
+             <span class="privacy-policy">
+             <input type="checkbox" name="field7">You agree to our Terms and Policy. 
+             </span>
+            </div>
+        </form>
+        </div>
+    </body>
+</html>

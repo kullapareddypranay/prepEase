@@ -1,0 +1,28 @@
+#nav{
+    color:black;
+    background-color: white;
+    border-color: white;
+}
+#nav a{
+    color:black;
+}
+#myNavbar ul li a{
+    color: black;
+}
+#middle{
+    padding: 20px;
+    margin: 25px;
+}
+#middle #middle-content1 {
+    padding: 20px;
+    height: 500px;
+}
+
+#middle #middle-content2{
+    padding: 20px;
+    height:500px;
+    width:100%;
+    background-image:url("prepease2.jpg");
+    background-repeat: no-repeat;
+    background-size:100% 100%;
+}
